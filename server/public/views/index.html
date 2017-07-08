@@ -3,11 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <script type="text/javascript" src="vendors/jquery.js"></script>
+    <script type="text/javascript" src="vendors/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/client.js"></script>
     <link rel="stylesheet" href="views/styles.css">
   </head>
   <body>
     <h1>TO DO List</h1>
+    <div class="container">
+      <input type="text" id="taskInput" name="" value="">
+      <button type="button" id="addTaskBtn" name="button"></button>
+      <table>
+        <thead>
+          <tr>
+            <th>TASKS</th>
+            <th>COMPLETE</th>
+            <th>DELETE</th>
+            <tbody id="taskList">
+            </tbody>
+          </tr>
+        </thead>
+      </table>
+    </div>
   </body>
 </html>

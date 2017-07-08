@@ -3,8 +3,10 @@ var app = express();
 var bodyParser = require('body-parser');
 var path = require( 'path' );
 var port = process.env.PORT || 5000;
+var toDoRoute = require('./routes/todo.js');
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use('/tasks', toDoRoute);
 
 // Serve back static files by default
 app.get('/*', function(req, res) {
