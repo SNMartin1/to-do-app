@@ -73,18 +73,18 @@ router.post('/', function(req, res) {
   }); // end pool
 });
 
-router.delete('/', function(req, res){
-  var task = req.body; // task with updated content
-  console.log('Put route called with task of ', task);
+router.delete('/:id', function(req, res){
+  var id = req.params.id; // task with updated content
+  console.log('Delete route called with id of ', id);
 
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'DELETE From "tasks" WHERE  id = 1;';
+      var queryText = 'DELETE From "tasks" WHERE  id = $1;';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, [task.id], function(errorMakingQuery, result){
+      db.query(queryText, [id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);

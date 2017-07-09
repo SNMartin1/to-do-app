@@ -9,17 +9,17 @@ Checklist
 - [x] Folder structure and static files (index.html, styles.css & client.js)
 - [x] Add server.js & set up our static route
 - [x] Add the **pg** module `npm install pg --save`
-- [] Create database table Postico
-- [] Create  SELECT query Postico
-- [] Create our **____.js** router & GET route
+- [x] Create database table Postico
+- [x] Create  SELECT query Postico
+- [x] Create our **todo.js** router & GET route
 - [] Add `pg` to [our GET route](#pgget)
 
 **Client**
 
-- [] AJAX call to GET our task list (print to console)
-- [] Append them to the DOM
+- [x] AJAX call to GET our task list (print to console)
+- [x] Append them to the DOM
 - [] Create our HTML form
-- [] AJAX call to POST the form data
+- [x] AJAX call to POST the form data
 
 **Server**
 

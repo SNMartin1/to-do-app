@@ -5,12 +5,13 @@ $(document).ready(function() {
   console.log('jq sourced');
   // load existing tasks on page load
    getTasks();
-   deleteTask();
+   //deleteTask();
+
+
   // add task button click
   $( '#addTaskBtn' ).on( 'click', function(){
     console.log( 'in addButton on click' );
     // get user input and put in an object
-    // using a test object
     var newTask = {};
     newTask.task = $('#taskInput').val();
 
@@ -23,40 +24,38 @@ $(document).ready(function() {
           console.log( 'get to do tasks: ', data );
             getTasks();
         } // end success
-
       }); //end of ajax
-getTasks();
-deleteTask();
-    // call saveKoala with the new obejct
-    // saveKoala(newKoala);
+      getTasks();
   }); //end addButton on click
+
+  $('.taskTable').on('click', '.delete', function() {
+      var taskId = $(this).data('taskid');
+      console.log($(this));
+      console.log(taskId);
+      deleteTask(taskId);
+    });
 }); // end doc ready
 
-function deleteTask() {
-$('.delete').on('click', function(){
-  console.log('delete clicked');
-  var deleteTask = $(this).data('taskid');
-  console.log('deleting', deleteTask);
-    $.ajax({
-      type: 'DELETE',
-      url: '/tasks',
-      data: {id: deleteTask},
-      success: function(response){
-        console.log(response);
-        getTasks();
-      }
-    });
 
-});
-} //end of deleteTask function
+function deleteTask(taskId) {
+
+  $.ajax({
+    type: 'DELETE',
+    url: '/tasks/' + taskId,
+    success: function(response){
+            console.log(response);
+            getTasks();
+          } //end success function
+  });
+}
 
 
 function getTasks(){
   console.log( 'in getTasks' );
-  // ajax call to server to get koalas
+  // ajax call to server to get task
   $.ajax({
-    url: '/tasks',
     type: 'GET',
+    url: '/tasks',
     success: function( data ){
       console.log( 'got some tasks: ', data );
       // console.log(data.)

@@ -1,0 +1,23 @@
+h1 {
+  text-align: center;
+}
+
+.container {
+  background-color: lightgray;
+  height: auto;
+  width: 600px;
+}
+
+.taskTable {
+  background-color: lightyellow;
+}
+
+#taskInput {
+  width: 250px;
+  margin: 5px;
+
+}
+
+#tasks {
+  width: 300px;
+}

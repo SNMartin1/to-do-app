@@ -8,21 +8,23 @@
     <link rel="stylesheet" href="views/styles.css">
   </head>
   <body>
-    <h1>TO DO List</h1>
     <div class="container">
-      <input type="text" id="taskInput" name="" value="">
-      <button type="button" id="addTaskBtn" name="button"></button>
-      <table>
-        <thead>
-          <tr>
-            <th>TASKS</th>
-            <th>COMPLETE</th>
-            <th>DELETE</th>
-            <tbody id="taskList">
-            </tbody>
-          </tr>
-        </thead>
-      </table>
+      <h1>TO DO List</h1>
+        <input type="text" id="taskInput" name="" value="">
+        <button type="button" id="addTaskBtn" name="button">Add Task</button>
+      <div class="taskTable">
+        <table>
+          <thead>
+            <tr>
+              <th id="tasks">TASKS</th>
+              <th id="complete">COMPLETE</th>
+              <th id="delete">DELETE</th>
+              <tbody id="taskList">
+              </tbody>
+            </tr>
+          </thead>
+        </table>
+      </div>
     </div>
   </body>
 </html>
