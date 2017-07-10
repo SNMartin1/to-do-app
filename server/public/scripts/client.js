@@ -37,7 +37,9 @@ $(document).ready(function() {
 
    $('.taskTable').on('click', '.complete', function() {
       var completeTask = $(this).data('listid');
-      //$(this).addClass("strike");
+      console.log($(this));
+      console.log($(this).parent());
+      $(this).parent().parent().addClass("strike");
       console.log('complete button id:', completeTask);
 
       function updateTask(taskToUpdate) {
@@ -47,7 +49,7 @@ $(document).ready(function() {
         data: {complete: true, id: completeTask},
         success: function(response) {
           console.log(response);
-          getTasks();
+          //getTasks();
         }
       }); //end of ajax
       }
