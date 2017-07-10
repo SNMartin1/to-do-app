@@ -7,14 +7,14 @@ $(document).ready(function() {
    getTasks();
    //deleteTask();
 
-
   // add task button click
   $( '#addTaskBtn' ).on( 'click', function(){
     console.log( 'in addButton on click' );
     // get user input and put in an object
     var newTask = {};
     newTask.task = $('#taskInput').val();
-
+    newTask.complete = false;
+      $('#taskInput').val(" ");
     // function addTaskBtn(newTask){
       $.ajax({
         url: '/tasks',
@@ -34,11 +34,28 @@ $(document).ready(function() {
       console.log(taskId);
       deleteTask(taskId);
     });
+
+   $('.taskTable').on('click', '.complete', function() {
+      var completeTask = $(this).data('listid');
+      console.log('complete button id:', completeTask);
+
+      function updateTask(taskToUpdate) {
+      $.ajax({
+        type: 'PUT',
+        url: '/tasks',
+        data: {id: completeTask},
+        success: function(response) {
+          console.log(response);
+          getTasks();
+        }
+      }); //end of ajax
+      }
+      updateTask();
+    });
 }); // end doc ready
 
 
 function deleteTask(taskId) {
-
   $.ajax({
     type: 'DELETE',
     url: '/tasks/' + taskId,
@@ -68,6 +85,17 @@ function getTasks(){
   // display on DOM with buttons that allow edit of each
 } // end getTasks
 
+function updateTask(taskToUpdate) {
+$.ajax({
+  type: 'PUT',
+  url: '/tasks',
+  data: taskToUpdate,
+  success: function(response) {
+    console.log(response);
+    getTasks();
+  }
+}); //end of ajax
+}
 
 // tasks should be an array
 function appendToDom(tasks) {

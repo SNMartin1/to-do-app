@@ -54,10 +54,10 @@ router.post('/', function(req, res) {
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = 'INSERT INTO "tasks" ("task")' +
-                      ' VALUES ($1) ;';
+      var queryText = 'INSERT INTO "tasks" (task, complete)' +
+                      ' VALUES ($1, $2);';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, [newTask.task,], function(errorMakingQuery, result){
+      db.query(queryText, [newTask.task, newTask.complete], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
@@ -85,6 +85,37 @@ router.delete('/:id', function(req, res){
       var queryText = 'DELETE From "tasks" WHERE  id = $1;';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, [id], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          // console.log(result);
+          // Send back the results
+          res.sendStatus(200);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
+});
+
+//PUT is similar to POST when using PG
+router.put('/', function(req, res){
+  var book = req.body; // Book with updated content
+  //console.log('Put route called with id of ', id);
+
+  // YOUR CODE HERE
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now we're going to GET things from the db
+      var queryText = 'UPDATE "tasks" SET "complete"=$1 WHERE id= $2;';
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, [task.complete, task.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
