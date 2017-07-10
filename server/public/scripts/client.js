@@ -37,13 +37,14 @@ $(document).ready(function() {
 
    $('.taskTable').on('click', '.complete', function() {
       var completeTask = $(this).data('listid');
+      //$(this).addClass("strike");
       console.log('complete button id:', completeTask);
 
       function updateTask(taskToUpdate) {
       $.ajax({
         type: 'PUT',
         url: '/tasks',
-        data: {id: completeTask},
+        data: {complete: true, id: completeTask},
         success: function(response) {
           console.log(response);
           getTasks();

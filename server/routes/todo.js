@@ -102,7 +102,7 @@ router.delete('/:id', function(req, res){
 
 //PUT is similar to POST when using PG
 router.put('/', function(req, res){
-  var book = req.body; // Book with updated content
+  var task = req.body; // task with updated content
   //console.log('Put route called with id of ', id);
 
   // YOUR CODE HERE

@@ -12,6 +12,10 @@ h1 {
   background-color: lightyellow;
 }
 
+.strike {
+  text-decoration: line-through;
+}
+
 #taskInput {
   width: 250px;
   margin: 5px;
